@@ -1,9 +1,9 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FeedContracterWidget extends StatefulWidget {
@@ -224,37 +224,6 @@ class _FeedContracterWidgetState extends State<FeedContracterWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          ToggleIcon(
-                                            onPressed: () async {
-                                              setState(
-                                                () => FFAppState()
-                                                        .state
-                                                        .contains(FFAppState()
-                                                            .state
-                                                            .length)
-                                                    ? FFAppState().state.remove(
-                                                        FFAppState()
-                                                            .state
-                                                            .length)
-                                                    : FFAppState().state.add(
-                                                        FFAppState()
-                                                            .state
-                                                            .length),
-                                              );
-                                            },
-                                            value: FFAppState().state.contains(
-                                                FFAppState().state.length),
-                                            onIcon: Icon(
-                                              Icons.favorite_rounded,
-                                              color: Color(0xFF4B39EF),
-                                              size: 25,
-                                            ),
-                                            offIcon: Icon(
-                                              Icons.favorite_border,
-                                              color: Color(0xFF95A1AC),
-                                              size: 25,
-                                            ),
-                                          ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
