@@ -1,6 +1,8 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -131,109 +133,265 @@ class _FeedContracterWidgetState extends State<FeedContracterWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 2, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 0, 0),
-                                        child: Text(
-                                          '@username',
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF090F13),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                      FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        buttonSize: 46,
-                                        icon: Icon(
-                                          Icons.keyboard_control,
-                                          color: Color(0xFF262D34),
-                                          size: 20,
-                                        ),
-                                        onPressed: () {
-                                          print('IconButton pressed ...');
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.96,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 6,
-                                    color: Color(0x3A000000),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://d.newsweek.com/en/full/1310267/best-hawaii-beaches.jpg',
-                                  width: 100,
-                                  height: 300,
-                                  fit: BoxFit.cover,
-                                ),
+                  Container(
+                    height: 200,
+                    child: StreamBuilder<List<PostRecord>>(
+                      stream: queryPostRecord(
+                        queryBuilder: (postRecord) => postRecord
+                            .orderBy('created_time', descending: true),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitPulse(
+                                color: FlutterFlowTheme.primaryColor,
+                                size: 50,
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
+                          );
+                        }
+                        List<PostRecord> listViewPostRecordList = snapshot.data;
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewPostRecordList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewPostRecord =
+                                listViewPostRecordList[listViewIndex];
+                            return Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.94,
+                                decoration: BoxDecoration(),
+                                child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 0),
+                                          0, 0, 2, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4, 0, 0, 0),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 0, 0, 0),
+                                                  child: Text(
+                                                    '@username',
+                                                    style: FlutterFlowTheme
+                                                        .bodyText1
+                                                        .override(
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF090F13),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ),
+                                                FlutterFlowIconButton(
+                                                  borderColor:
+                                                      Colors.transparent,
+                                                  borderRadius: 30,
+                                                  buttonSize: 46,
+                                                  icon: Icon(
+                                                    Icons.keyboard_control,
+                                                    color: Color(0xFF262D34),
+                                                    size: 20,
+                                                  ),
+                                                  onPressed: () {
+                                                    print(
+                                                        'IconButton pressed ...');
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 0, 0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.96,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 6,
+                                              color: Color(0x3A000000),
+                                              offset: Offset(0, 2),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.network(
+                                            listViewPostRecord.photoUrl,
+                                            width: 100,
+                                            height: 300,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 8, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 16, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    ToggleIcon(
+                                                      onPressed: () async {
+                                                        setState(
+                                                          () => FFAppState()
+                                                                  .state
+                                                                  .contains(
+                                                                      FFAppState()
+                                                                          .state
+                                                                          .length)
+                                                              ? FFAppState()
+                                                                  .state
+                                                                  .remove(
+                                                                      FFAppState()
+                                                                          .state
+                                                                          .length)
+                                                              : FFAppState()
+                                                                  .state
+                                                                  .add(FFAppState()
+                                                                      .state
+                                                                      .length),
+                                                        );
+                                                      },
+                                                      value: FFAppState()
+                                                          .state
+                                                          .contains(FFAppState()
+                                                              .state
+                                                              .length),
+                                                      onIcon: Icon(
+                                                        Icons.favorite_rounded,
+                                                        color:
+                                                            Color(0xFF4B39EF),
+                                                        size: 25,
+                                                      ),
+                                                      offIcon: Icon(
+                                                        Icons.favorite_border,
+                                                        color:
+                                                            Color(0xFF95A1AC),
+                                                        size: 25,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  4, 0, 0, 0),
+                                                      child: Text(
+                                                        '2,493',
+                                                        style: FlutterFlowTheme
+                                                            .bodyText2
+                                                            .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              Color(0xFF8B97A2),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.mode_comment_outlined,
+                                                    color: Color(0xFF95A1AC),
+                                                    size: 24,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 0, 0),
+                                                    child: Text(
+                                                      '4',
+                                                      style: FlutterFlowTheme
+                                                          .bodyText2
+                                                          .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF8B97A2),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.ios_share,
+                                                color: Color(0xFF95A1AC),
+                                                size: 24,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          2, 4, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
                                             child: Text(
-                                              '2,493',
-                                              style: FlutterFlowTheme.bodyText2
+                                              'I\'m back with a super quick Instagram redesign just for the fan. Rounded corners and cute icons, what else do we need, haha.⁣ ',
+                                              style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
+                                                color: Color(0xFF090F13),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.normal,
                                               ),
@@ -242,67 +400,13 @@ class _FeedContracterWidgetState extends State<FeedContracterWidget> {
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.mode_comment_outlined,
-                                          color: Color(0xFF95A1AC),
-                                          size: 24,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4, 0, 0, 0),
-                                          child: Text(
-                                            '4',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF8B97A2),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                   ],
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.ios_share,
-                                      color: Color(0xFF95A1AC),
-                                      size: 24,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 4, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    'I\'m back with a super quick Instagram redesign just for the fan. Rounded corners and cute icons, what else do we need, haha.⁣ ',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF090F13),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
