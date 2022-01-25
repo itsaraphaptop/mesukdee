@@ -20,18 +20,6 @@ class _FeedContracterWidgetState extends State<FeedContracterWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFF1F5F8),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
-        },
-        backgroundColor: Color(0xFF4B39EF),
-        elevation: 8,
-        child: Icon(
-          Icons.create_rounded,
-          color: Colors.white,
-          size: 24,
-        ),
-      ),
       body: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
         child: StreamBuilder<List<PostRecord>>(
@@ -73,11 +61,34 @@ class _FeedContracterWidgetState extends State<FeedContracterWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          child: Image.network(
-                            listViewPostRecord.photoUrl,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
+                          child: StreamBuilder<List<PostRecord>>(
+                            stream: queryPostRecord(
+                              queryBuilder: (postRecord) => postRecord
+                                  .orderBy('created_time', descending: true),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitPulse(
+                                      color: FlutterFlowTheme.primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<PostRecord> imagePostRecordList =
+                                  snapshot.data;
+                              return Image.network(
+                                '',
+                                width: MediaQuery.of(context).size.width,
+                                height: 300,
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       ],
