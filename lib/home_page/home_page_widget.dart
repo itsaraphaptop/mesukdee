@@ -1,5 +1,5 @@
 import '../auth/auth_util.dart';
-import '../booking/booking_widget.dart';
+import '../feed_contracter/feed_contracter_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -192,7 +192,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       await Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => BookingWidget(),
+                                          builder: (context) =>
+                                              FeedContracterWidget(),
                                         ),
                                         (r) => false,
                                       );

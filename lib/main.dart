@@ -7,7 +7,7 @@ import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:mesukdee/home_page/home_page_widget.dart';
-import 'package:mesukdee/booking/booking_widget.dart';
+import 'package:mesukdee/feed_contracter/feed_contracter_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 
 void main() async {
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? BookingWidget()
+              ? FeedContracterWidget()
               : HomePageWidget(),
     );
   }
