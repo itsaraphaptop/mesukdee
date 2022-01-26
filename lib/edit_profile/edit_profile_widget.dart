@@ -324,10 +324,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           displayName: textController1?.text ?? '',
                           phoneNumber: phoneNumberController.text,
                           email: emailAddressController.text,
-                          photoUrl: editProfileUsersRecord.photoUrl,
+                          photoUrl: uploadedFileUrl,
                         );
                         await currentUserReference.update(usersUpdateData);
-                        Navigator.pop(context);
                       },
                       text: 'Save Changes',
                       options: FFButtonOptions(
@@ -350,37 +349,39 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      await signOut();
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginWidget(),
+                Align(
+                  alignment: AlignmentDirectional(0, 0.05),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await signOut();
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
+                      text: 'Logout',
+                      options: FFButtonOptions(
+                        width: 340,
+                        height: 60,
+                        color: Color(0xFF39D2C0),
+                        textStyle: FlutterFlowTheme.subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
                         ),
-                        (r) => false,
-                      );
-                    },
-                    text: 'Logout',
-                    icon: Icon(
-                      Icons.logout,
-                      size: 15,
-                    ),
-                    options: FFButtonOptions(
-                      width: 340,
-                      height: 60,
-                      color: Color(0x00FFFFFF),
-                      textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF39D2C0),
+                        elevation: 2,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 8,
                       ),
-                      borderSide: BorderSide(
-                        color: Color(0xFF39D2C0),
-                        width: 1,
-                      ),
-                      borderRadius: 12,
                     ),
                   ),
                 ),

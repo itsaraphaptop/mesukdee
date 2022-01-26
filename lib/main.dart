@@ -118,16 +118,12 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.home,
               size: 24,
             ),
-            activeIcon: Icon(
-              Icons.home,
-              size: 24,
-            ),
             label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              Icons.person_sharp,
               size: 24,
             ),
             label: 'Edit Profile',

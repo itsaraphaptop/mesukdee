@@ -104,170 +104,178 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                             }
                             List<JobSubConsRecord> columnJobSubConsRecordList =
                                 snapshot.data;
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: List.generate(
-                                  columnJobSubConsRecordList.length,
-                                  (columnIndex) {
-                                final columnJobSubConsRecord =
-                                    columnJobSubConsRecordList[columnIndex];
-                                return Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 10, 8, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: Colors.white,
-                                          elevation: 3,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Image.network(
-                                                      columnJobSubConsRecord
-                                                          .photoUrl,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height: 200,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.85,
-                                                height: 1,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFDBE2E7),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 4, 12, 4),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 4, 0, 0),
-                                                      child: Text(
-                                                        columnJobSubConsRecord
-                                                            .jobTitle,
-                                                        style: FlutterFlowTheme
-                                                            .subtitle1
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color:
-                                                              Color(0xFF151B1E),
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 4, 12, 4),
-                                                child: Row(
+                            return SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: List.generate(
+                                    columnJobSubConsRecordList.length,
+                                    (columnIndex) {
+                                  final columnJobSubConsRecord =
+                                      columnJobSubConsRecordList[columnIndex];
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 10, 8, 0),
+                                          child: Card(
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            color: Colors.white,
+                                            elevation: 3,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
                                                     Expanded(
-                                                      child: Text(
+                                                      child: Image.network(
                                                         columnJobSubConsRecord
-                                                            .jobDesc,
-                                                        style: FlutterFlowTheme
-                                                            .bodyText2
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color:
-                                                              Color(0xFF8B97A2),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
+                                                            .photoUrl,
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        height: 200,
+                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 4, 12, 8),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 4),
-                                                      child: Icon(
-                                                        Icons.schedule,
-                                                        color:
-                                                            Color(0xFF4B39EF),
-                                                        size: 20,
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.85,
+                                                  height: 1,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFFDBE2E7),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 4, 12, 4),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 4, 0, 0),
+                                                        child: Text(
+                                                          columnJobSubConsRecord
+                                                              .jobTitle,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .subtitle1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF151B1E),
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  4, 0, 0, 0),
-                                                      child: Text(
-                                                        dateTimeFormat(
-                                                            'Hm',
-                                                            columnJobSubConsRecord
-                                                                .createdTime),
-                                                        style: FlutterFlowTheme
-                                                            .bodyText1
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 4, 12, 4),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          columnJobSubConsRecord
+                                                              .jobDesc,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF8B97A2),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 4, 12, 8),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 4),
+                                                        child: Icon(
+                                                          Icons.schedule,
                                                           color:
                                                               Color(0xFF4B39EF),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                          size: 20,
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    4, 0, 0, 0),
+                                                        child: Text(
+                                                          dateTimeFormat(
+                                                              'Hm',
+                                                              columnJobSubConsRecord
+                                                                  .createdTime),
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF4B39EF),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              }),
+                                    ],
+                                  );
+                                }),
+                              ),
                             );
                           },
                         ),
