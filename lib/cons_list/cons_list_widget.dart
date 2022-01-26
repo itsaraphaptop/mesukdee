@@ -92,6 +92,7 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                         StreamBuilder<List<JobSubConsRecord>>(
                           stream: queryJobSubConsRecord(
                             queryBuilder: (jobSubConsRecord) => jobSubConsRecord
+                                .where('uid', isEqualTo: currentUserUid)
                                 .orderBy('Created_time', descending: true),
                           ),
                           builder: (context, snapshot) {
@@ -199,6 +200,38 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 4, 12, 4),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          columnJobSubConsRecord
+                                                              .jobDesc
+                                                              .maybeHandleOverflow(
+                                                                  maxChars:
+                                                                      200),
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF8B97A2),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(12, 4, 12, 8),
                                                   child: Row(
                                                     mainAxisSize:
@@ -237,60 +270,6 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(10, 0,
-                                                                    0, 0),
-                                                        child: Text(
-                                                          columnJobSubConsRecord
-                                                              .uid,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText1,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(10, 0,
-                                                                    0, 0),
-                                                        child: Text(
-                                                          currentUserUid,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText1,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(12, 4, 12, 4),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          columnJobSubConsRecord
-                                                              .jobDesc,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Color(
-                                                                0xFF8B97A2),
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
                                                           ),
                                                         ),
                                                       ),

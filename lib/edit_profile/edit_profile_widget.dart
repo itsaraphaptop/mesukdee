@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../login/login_widget.dart';
-import '../main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -61,21 +60,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
-            leading: InkWell(
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NavBarPage(initialPage: 'ConsList'),
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.black,
-                size: 24,
-              ),
-            ),
             title: Text(
               'Edit Profile',
               style: FlutterFlowTheme.bodyText1.override(
