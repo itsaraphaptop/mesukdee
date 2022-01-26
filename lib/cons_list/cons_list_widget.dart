@@ -79,44 +79,45 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: StreamBuilder<List<JobSubConsRecord>>(
-                      stream: queryJobSubConsRecord(
-                        queryBuilder: (jobSubConsRecord) => jobSubConsRecord
-                            .orderBy('Created_time', descending: true),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color: FlutterFlowTheme.primaryColor,
-                              ),
-                            ),
-                          );
-                        }
-                        List<JobSubConsRecord> listViewJobSubConsRecordList =
-                            snapshot.data;
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewJobSubConsRecordList.length,
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewJobSubConsRecord =
-                                listViewJobSubConsRecordList[listViewIndex];
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        StreamBuilder<List<JobSubConsRecord>>(
+                          stream: queryJobSubConsRecord(
+                            queryBuilder: (jobSubConsRecord) => jobSubConsRecord
+                                .orderBy('Created_time', descending: true),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.primaryColor,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<JobSubConsRecord> columnJobSubConsRecordList =
+                                snapshot.data;
                             return Column(
                               mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
+                              children: List.generate(
+                                  columnJobSubConsRecordList.length,
+                                  (columnIndex) {
+                                final columnJobSubConsRecord =
+                                    columnJobSubConsRecordList[columnIndex];
+                                return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
+                                            8, 10, 8, 0),
                                         child: Card(
                                           clipBehavior:
                                               Clip.antiAliasWithSaveLayer,
@@ -132,14 +133,17 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  Image.network(
-                                                    'https://picsum.photos/seed/746/600',
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 100,
-                                                    fit: BoxFit.cover,
+                                                  Expanded(
+                                                    child: Image.network(
+                                                      columnJobSubConsRecord
+                                                          .photoUrl,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 200,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -166,7 +170,7 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                               .fromSTEB(
                                                                   0, 4, 0, 0),
                                                       child: Text(
-                                                        listViewJobSubConsRecord
+                                                        columnJobSubConsRecord
                                                             .jobTitle,
                                                         style: FlutterFlowTheme
                                                             .subtitle1
@@ -193,7 +197,7 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                   children: [
                                                     Expanded(
                                                       child: Text(
-                                                        listViewJobSubConsRecord
+                                                        columnJobSubConsRecord
                                                             .jobDesc,
                                                         style: FlutterFlowTheme
                                                             .bodyText2
@@ -237,8 +241,8 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                                   4, 0, 0, 0),
                                                       child: Text(
                                                         dateTimeFormat(
-                                                            'jm',
-                                                            listViewJobSubConsRecord
+                                                            'Hm',
+                                                            columnJobSubConsRecord
                                                                 .createdTime),
                                                         style: FlutterFlowTheme
                                                             .bodyText1
@@ -262,12 +266,12 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                       ),
                                     ),
                                   ],
-                                ),
-                              ],
+                                );
+                              }),
                             );
                           },
-                        );
-                      },
+                        ),
+                      ],
                     ),
                   ),
                 ),

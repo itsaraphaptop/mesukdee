@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,13 +20,15 @@ class CreateJobsWidget extends StatefulWidget {
 
 class _CreateJobsWidgetState extends State<CreateJobsWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController;
+  TextEditingController textController1;
+  TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
@@ -140,7 +143,51 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
                           children: [
                             Expanded(
                               child: TextFormField(
-                                controller: textController,
+                                controller: textController1,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'Title',
+                                  hintStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF090F13),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFDBE2E7),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFDBE2E7),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsetsDirectional.fromSTEB(
+                                          20, 32, 20, 12),
+                                ),
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF090F13),
+                                ),
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                controller: textController2,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   hintText: 'Comment....',
@@ -192,11 +239,17 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                Navigator.pop(context);
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NavBarPage(initialPage: 'ConsList'),
+                  ),
+                );
                 final jobSubConsCreateData = createJobSubConsRecordData(
-                  jobTitle: '',
-                  jobDesc: '',
+                  jobTitle: textController1.text,
+                  jobDesc: textController2.text,
                   photoUrl: uploadedFileUrl,
+                  uid: currentUserReference,
                 );
                 await JobSubConsRecord.collection
                     .doc()
