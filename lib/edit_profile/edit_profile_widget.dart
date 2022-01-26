@@ -324,7 +324,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           displayName: textController1?.text ?? '',
                           phoneNumber: phoneNumberController.text,
                           email: emailAddressController.text,
-                          photoUrl: uploadedFileUrl,
+                          photoUrl: editProfileUsersRecord.photoUrl,
                         );
                         await currentUserReference.update(usersUpdateData);
                         Navigator.pop(context);
