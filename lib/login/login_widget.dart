@@ -192,38 +192,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: Text('Login'),
-                                content: Text('Alert'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () async {
-                                      Navigator.pop(alertDialogContext);
+                          final user = await signInWithEmail(
+                            context,
+                            emailAddressController.text,
+                            passwordController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
 
-                                      final user = await signInWithEmail(
-                                        context,
-                                        emailAddressController.text,
-                                        passwordController.text,
-                                      );
-                                      if (user == null) {
-                                        return;
-                                      }
-
-                                      ;
-                                    },
-                                    child: Text('Confirm'),
-                                  ),
-                                ],
-                              );
-                            },
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NavBarPage(initialPage: 'ConsList'),
+                            ),
+                            (r) => false,
                           );
                         },
                         text: 'Login',
