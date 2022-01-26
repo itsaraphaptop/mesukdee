@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../login/login_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -107,8 +108,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.network(
-                            editProfileUsersRecord.photoUrl,
+                          child: CachedNetworkImage(
+                            imageUrl: editProfileUsersRecord.photoUrl,
                             fit: BoxFit.fitWidth,
                           ),
                         ),
