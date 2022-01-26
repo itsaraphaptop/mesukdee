@@ -1,18 +1,3 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "JobSubCons",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "uid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "Created_time",
-          "order": "DESCENDING"
-        }
-      ]
-    }
-  ]
+  "indexes": []
 }
