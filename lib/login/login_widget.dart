@@ -192,22 +192,38 @@ class _LoginWidgetState extends State<LoginWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          final user = await signInWithEmail(
-                            context,
-                            emailAddressController.text,
-                            passwordController.text,
-                          );
-                          if (user == null) {
-                            return;
-                          }
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Login'),
+                                content: Text('Alert'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      Navigator.pop(alertDialogContext);
 
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'ConsList'),
-                            ),
-                            (r) => false,
+                                      final user = await signInWithEmail(
+                                        context,
+                                        emailAddressController.text,
+                                        passwordController.text,
+                                      );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      ;
+                                    },
+                                    child: Text('Confirm'),
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         },
                         text: 'Login',
