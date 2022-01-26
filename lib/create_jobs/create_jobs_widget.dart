@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,10 +86,6 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
             );
           }
           List<JobSubConsRecord> columnJobSubConsRecordList = snapshot.data;
-          // Return an empty Container when the document does not exist.
-          if (snapshot.data.isEmpty) {
-            return Container();
-          }
           final columnJobSubConsRecord = columnJobSubConsRecordList.isNotEmpty
               ? columnJobSubConsRecordList.first
               : null;
@@ -113,10 +108,8 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                             child: InkWell(
                               onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  allowPhoto: true,
+                                final selectedMedia = await selectMedia(
+                                  mediaSource: MediaSource.photoGallery,
                                 );
                                 if (selectedMedia != null &&
                                     validateFileFormat(
@@ -145,12 +138,6 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
                                 height: 350,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFF1F5F8),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/emptyState@2x.png',
-                                    ).image,
-                                  ),
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 6,
@@ -268,21 +255,17 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'ConsList'),
-                      ),
-                    );
                     final jobSubConsCreateData = createJobSubConsRecordData(
+                      uid: currentUserUid,
                       jobTitle: textController1.text,
                       jobDesc: textController2.text,
+                      createdTime: columnJobSubConsRecord.createdTime,
                       photoUrl: uploadedFileUrl,
                     );
                     await JobSubConsRecord.collection
                         .doc()
                         .set(jobSubConsCreateData);
+                    Navigator.pop(context);
                   },
                   text: 'Create Post',
                   options: FFButtonOptions(

@@ -24,26 +24,31 @@ class _ConsListWidgetState extends State<ConsListWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: InkWell(
-          onTap: () async {
-            await signOut();
-            await Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginWidget(),
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            InkWell(
+              onTap: () async {
+                await signOut();
+                await Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginWidget(),
+                  ),
+                  (r) => false,
+                );
+              },
+              child: Text(
+                'Explore',
+                style: FlutterFlowTheme.title1.override(
+                  fontFamily: 'Lexend Deca',
+                  color: Color(0xFF090F13),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              (r) => false,
-            );
-          },
-          child: Text(
-            'Explore',
-            style: FlutterFlowTheme.title1.override(
-              fontFamily: 'Lexend Deca',
-              color: Color(0xFF090F13),
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
             ),
-          ),
+          ],
         ),
         actions: [
           Padding(
@@ -194,35 +199,6 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(12, 4, 12, 4),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          columnJobSubConsRecord
-                                                              .jobDesc,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Color(
-                                                                0xFF8B97A2),
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(12, 4, 12, 8),
                                                   child: Row(
                                                     mainAxisSize:
@@ -261,6 +237,60 @@ class _ConsListWidgetState extends State<ConsListWidget> {
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(10, 0,
+                                                                    0, 0),
+                                                        child: Text(
+                                                          columnJobSubConsRecord
+                                                              .uid,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText1,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(10, 0,
+                                                                    0, 0),
+                                                        child: Text(
+                                                          currentUserUid,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 4, 12, 4),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          columnJobSubConsRecord
+                                                              .jobDesc,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF8B97A2),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
                                                           ),
                                                         ),
                                                       ),
