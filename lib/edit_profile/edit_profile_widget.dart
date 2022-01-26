@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../login/login_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -321,12 +322,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       onPressed: () async {
                         final usersUpdateData = createUsersRecordData(
                           displayName: textController1?.text ?? '',
+                          phoneNumber: phoneNumberController.text,
+                          email: emailAddressController.text,
                           photoUrl: uploadedFileUrl,
-                          phoneNumber: '',
-                          email: '',
                         );
-                        await editProfileUsersRecord.reference
-                            .update(usersUpdateData);
+                        await currentUserReference.update(usersUpdateData);
                         Navigator.pop(context);
                       },
                       text: 'Save Changes',
@@ -347,6 +347,40 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ),
                         borderRadius: 8,
                       ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      await signOut();
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    },
+                    text: 'Logout',
+                    icon: Icon(
+                      Icons.logout,
+                      size: 15,
+                    ),
+                    options: FFButtonOptions(
+                      width: 340,
+                      height: 60,
+                      color: Color(0x00FFFFFF),
+                      textStyle: FlutterFlowTheme.subtitle2.override(
+                        fontFamily: 'Lexend Deca',
+                        color: Color(0xFF39D2C0),
+                      ),
+                      borderSide: BorderSide(
+                        color: Color(0xFF39D2C0),
+                        width: 1,
+                      ),
+                      borderRadius: 12,
                     ),
                   ),
                 ),
