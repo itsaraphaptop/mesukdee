@@ -147,6 +147,20 @@ class _CreateJobsWidgetState extends State<CreateJobsWidget> {
                                   ],
                                   borderRadius: BorderRadius.circular(8),
                                 ),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30,
+                                  borderWidth: 1,
+                                  buttonSize: 60,
+                                  icon: Icon(
+                                    Icons.cloud_upload_outlined,
+                                    color: Color(0xFF203047),
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
+                                ),
                               ),
                             ),
                           ),

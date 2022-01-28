@@ -5,8 +5,8 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../list_cons/list_cons_widget.dart';
 import '../login/login_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,6 +60,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
+            leading: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListConsWidget(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.keyboard_backspace,
+                color: Colors.black,
+                size: 24,
+              ),
+            ),
             title: Text(
               'Edit Profile',
               style: FlutterFlowTheme.bodyText1.override(
@@ -89,19 +104,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         color: Color(0xFFDBE2E7),
                         shape: BoxShape.circle,
                       ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: CachedNetworkImage(
-                            imageUrl: editProfileUsersRecord.photoUrl,
-                            fit: BoxFit.fitWidth,
-                          ),
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Image.network(
+                          editProfileUsersRecord.photoUrl,
                         ),
                       ),
                     ),
@@ -116,6 +127,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           final selectedMedia = await selectMedia(
+                            maxWidth: 100.00,
+                            maxHeight: 100.00,
                             mediaSource: MediaSource.photoGallery,
                           );
                           if (selectedMedia != null &&

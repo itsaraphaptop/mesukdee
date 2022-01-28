@@ -1,9 +1,9 @@
 import '../auth/auth_util.dart';
+import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
-import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,11 +60,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/uiLogo_robinColored.png',
-                          width: 240,
-                          height: 60,
-                          fit: BoxFit.cover,
+                        Text(
+                          'MyApp',
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Kanit',
+                            color: Color(0xFFF1F5F8),
+                            fontSize: 50,
+                          ),
                         ),
                       ],
                     ),
@@ -279,8 +281,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => NavBarPage(
-                                          initialPage: 'EditProfile'),
+                                      builder: (context) => EditProfileWidget(),
                                     ),
                                   );
                                 },

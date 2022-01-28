@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/job_sub_cons_record.dart';
+import 'schema/category_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +15,7 @@ export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
 export 'schema/job_sub_cons_record.dart';
+export 'schema/category_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -44,6 +46,21 @@ Future<List<JobSubConsRecord>> queryJobSubConsRecordOnce(
         bool singleRecord = false}) =>
     queryCollectionOnce(
         JobSubConsRecord.collection, JobSubConsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query CategoryRecords (as a Stream and as a Future).
+Stream<List<CategoryRecord>> queryCategoryRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(CategoryRecord.collection, CategoryRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<CategoryRecord>> queryCategoryRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(CategoryRecord.collection, CategoryRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

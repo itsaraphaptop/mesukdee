@@ -2,7 +2,7 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
+import '../list_cons/list_cons_widget.dart';
 import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,12 +51,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 90),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/logoRobin@3x.png',
-                        width: 242,
-                        height: 60,
+                        'assets/images/msdlogo1.png',
+                        width: 100,
+                        height: 100,
                         fit: BoxFit.cover,
                       ),
                     ],
@@ -204,8 +204,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'ConsList'),
+                              builder: (context) => ListConsWidget(),
                             ),
                             (r) => false,
                           );
@@ -266,7 +265,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Colors.white,
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -287,7 +286,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           textStyle: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFF39D2C0),
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
                           elevation: 0,

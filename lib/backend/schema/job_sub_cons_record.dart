@@ -31,6 +31,9 @@ abstract class JobSubConsRecord
   String get uid;
 
   @nullable
+  String get categoryid;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -38,7 +41,8 @@ abstract class JobSubConsRecord
     ..jobTitle = ''
     ..jobDesc = ''
     ..photoUrl = ''
-    ..uid = '';
+    ..uid = ''
+    ..categoryid = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('JobSubCons');
@@ -67,6 +71,7 @@ Map<String, dynamic> createJobSubConsRecordData({
   DateTime createdTime,
   String photoUrl,
   String uid,
+  String categoryid,
 }) =>
     serializers.toFirestore(
         JobSubConsRecord.serializer,
@@ -75,4 +80,5 @@ Map<String, dynamic> createJobSubConsRecordData({
           ..jobDesc = jobDesc
           ..createdTime = createdTime
           ..photoUrl = photoUrl
-          ..uid = uid));
+          ..uid = uid
+          ..categoryid = categoryid));
