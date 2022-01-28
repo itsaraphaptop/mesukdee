@@ -92,289 +92,297 @@ class _ListConsWidgetState extends State<ListConsWidget> {
         elevation: 2,
       ),
       backgroundColor: Color(0xFFF1F5F8),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Material(
-                  color: Colors.transparent,
-                  elevation: 0,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.tertiaryColor,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                      child: TextFormField(
-                        controller: searchFieldController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Search for classes...',
-                          labelStyle: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Color(0xFF95A1AC),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          hintText: 'Search by name, location etc...',
-                          hintStyle: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Color(0xFF95A1AC),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFFD4A752),
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFFD4A752),
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          prefixIcon: Icon(
-                            Icons.search_rounded,
-                            color: Color(0xFF95A1AC),
-                          ),
-                        ),
-                        style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Lexend Deca',
-                          color: Color(0xFF95A1AC),
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
-              child: Row(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    'Upcoming Jobs',
-                    style: FlutterFlowTheme.bodyText2.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF8B97A2),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
+                  Material(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+                        child: TextFormField(
+                          controller: searchFieldController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Search for classes...',
+                            labelStyle: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFF95A1AC),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            hintText: 'Search by name, location etc...',
+                            hintStyle: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFF95A1AC),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFD4A752),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFD4A752),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search_rounded,
+                              color: Color(0xFF95A1AC),
+                            ),
+                          ),
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Color(0xFF95A1AC),
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            StreamBuilder<List<JobSubConsRecord>>(
-              stream: queryJobSubConsRecord(
-                queryBuilder: (jobSubConsRecord) => jobSubConsRecord
-                    .where('uid', isEqualTo: currentUserUid)
-                    .orderBy('Created_time', descending: true),
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator(
-                        color: FlutterFlowTheme.primaryColor,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Upcoming Jobs',
+                      style: FlutterFlowTheme.bodyText2.override(
+                        fontFamily: 'Lexend Deca',
+                        color: Color(0xFF8B97A2),
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
-                  );
-                }
-                List<JobSubConsRecord> columnClassesJobSubConsRecordList =
-                    snapshot.data;
-                return SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children:
-                        List.generate(columnClassesJobSubConsRecordList.length,
-                            (columnClassesIndex) {
-                      final columnClassesJobSubConsRecord =
-                          columnClassesJobSubConsRecordList[columnClassesIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ContentConsWidget(
-                                  postis:
-                                      columnClassesJobSubConsRecord.reference,
+                  ],
+                ),
+              ),
+              StreamBuilder<List<JobSubConsRecord>>(
+                stream: queryJobSubConsRecord(
+                  queryBuilder: (jobSubConsRecord) => jobSubConsRecord
+                      .where('uid', isEqualTo: currentUserUid)
+                      .orderBy('Created_time', descending: true),
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                          color: FlutterFlowTheme.primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                  List<JobSubConsRecord> columnClassesJobSubConsRecordList =
+                      snapshot.data;
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: List.generate(
+                          columnClassesJobSubConsRecordList.length,
+                          (columnClassesIndex) {
+                        final columnClassesJobSubConsRecord =
+                            columnClassesJobSubConsRecordList[
+                                columnClassesIndex];
+                        return Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ContentConsWidget(
+                                    postis:
+                                        columnClassesJobSubConsRecord.reference,
+                                  ),
                                 ),
+                              );
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF090F13),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(8),
+                                shape: BoxShape.rectangle,
                               ),
-                            );
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(8),
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.network(
-                                          columnClassesJobSubConsRecord
-                                              .photoUrl,
-                                          width: 100,
-                                          height: 130,
-                                          fit: BoxFit.cover,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.network(
+                                            columnClassesJobSubConsRecord
+                                                .photoUrl,
+                                            width: 100,
+                                            height: 130,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF203047),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(8),
-                                        bottomRight: Radius.circular(8),
-                                        topLeft: Radius.circular(0),
-                                        topRight: Radius.circular(0),
+                                    ],
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF203047),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(8),
+                                          bottomRight: Radius.circular(8),
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
+                                        ),
                                       ),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 0, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
-                                                child: Column(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 0, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        columnClassesJobSubConsRecord
+                                                            .jobTitle,
+                                                        style: FlutterFlowTheme
+                                                            .title2
+                                                            .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color: Colors.white,
+                                                          fontSize: 22,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        columnClassesJobSubConsRecord
+                                                            .jobDesc
+                                                            .maybeHandleOverflow(
+                                                          maxChars: 10,
+                                                          replacement: '…',
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                            .bodyText1
+                                                            .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              Color(0xFFD4A752),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      columnClassesJobSubConsRecord
-                                                          .jobTitle,
-                                                      style: FlutterFlowTheme
-                                                          .title2
-                                                          .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
+                                                    FFButtonWidget(
+                                                      onPressed: () {
+                                                        print(
+                                                            'Button-Reserve pressed ...');
+                                                      },
+                                                      text: 'Reserve',
+                                                      icon: Icon(
+                                                        Icons.add_rounded,
                                                         color: Colors.white,
-                                                        fontSize: 22,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                        size: 15,
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      columnClassesJobSubConsRecord
-                                                          .jobDesc
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 10,
-                                                        replacement: '…',
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
+                                                      options: FFButtonOptions(
+                                                        width: 120,
+                                                        height: 40,
                                                         color:
                                                             Color(0xFFD4A752),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                        textStyle:
+                                                            GoogleFonts.getFont(
+                                                          'Lexend Deca',
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                        ),
+                                                        elevation: 3,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius: 8,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button-Reserve pressed ...');
-                                                    },
-                                                    text: 'Reserve',
-                                                    icon: Icon(
-                                                      Icons.add_rounded,
-                                                      color: Colors.white,
-                                                      size: 15,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      width: 120,
-                                                      height: 40,
-                                                      color: Color(0xFFD4A752),
-                                                      textStyle:
-                                                          GoogleFonts.getFont(
-                                                        'Lexend Deca',
-                                                        color: Colors.white,
-                                                        fontSize: 14,
-                                                      ),
-                                                      elevation: 3,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 8,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-                  ),
-                );
-              },
-            ),
-          ],
+                        );
+                      }),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
